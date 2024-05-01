@@ -1,0 +1,129 @@
+
+servlet
+-------
+It is a technology useful for developing web applications  by  using servlet API.
+Main intention  of servlet is request handling. 
+Servlet is handled by servlet container
+
+3 ways to implement servlet
+---------------------------
+1)By implementing Servlet
+2)By extending GenericServlet
+3)By extending HttpServlet(Best one among all the 3 ways)
+
+1  Servlet(Interface)------------------------->import javax.servlet.*;
+    |
+    |
+2  GenericServlet(AbstractClass)---------------->import javax.servlet. Genericservlet
+    |
+    |
+3 HttpServlet (AbstractClass)------------------>import javax.servlet.http.HttpServlet;
+
+Methods present in servlet
+--------------------------
+1 public void init(ServletConfig sc)throws ServletException
+2 public void service(ServletRequest request,ServletResponse response)throws ServletException,IOException
+3 public void destroy()
+4 public void String getServletInfo()
+5 public void ServletConfig getServletConfig()
+
+1)By implementing Servlet
+--------------------------
+class Myservlet1 implements Servlet 
+{
+ p v init(ServletConfig sc)throws ServletException
+ {
+ }
+ p   v service(ServletRequest request,ServletResponse response)throws ServletException,IOException
+ {
+ ---
+ ---
+ ----
+ }
+ p v destroy()
+ {
+ }
+ p String getServletInfo()
+ {
+ }
+ p ServletConfig getServletConfig()
+ {
+ }
+}
+
+2)By extending GenericServlet     supports always GET request only.
+------------------------------
+p abstract class GenericServlet implements Servlet
+{
+ p v init(ServletConfig sc)throws ServletException
+ {
+ }
+ p v destroy()
+ {
+ }
+ p String getServletInfo()
+ {
+ }
+ p ServletConfig getServletConfig()
+ {
+ }
+ p  abstract  v service(ServletRequest request,ServletResponse response)throws ServletException,IOException
+}
+
+class Myservlet2 extends GenericServlet
+{
+public   void  service(ServletRequest request,ServletResponse response)throws ServletException,IOException
+{
+---
+---
+---
+}
+}
+
+3)By extending HttpServlet    It supports GET, POST, PUT, DELETE Requests.
+---------------------------
+public abstract class HttpServlet extends GenericServlet
+ {
+   public  abstract  void service(ServletRequest request,ServletResponse response)throws ServletException,IOException
+  { 
+     HttpservletRequest hreq=(HttpservletRequest)request;
+     HttpservletResponse hres=(HttpservletResponse)res;
+       service(hreq,hres);
+  }
+  protected void service( HttpservletRequest hreq, HttpservletResponse hres)
+   {
+     String method=hreq.getMethod();
+       if(method.equals("GET")
+       {
+         doGet(hreq,hres);
+       }
+             if(method.equals("POST")
+       {
+         doPost(hreq,hres);
+       }
+       protected void doGet(HttpservletRequest req, HttpservletResponse hres)
+      {
+          code
+       }
+       protected void doPost(HttpservletRequest req, HttpservletResponse hres)
+      {
+          code
+       }
+ }
+
+    public class Myservlet3 extends HttpServlet
+  {
+      protected void doGet(HttpservletRequest req, HttpservletResponse hres)
+      {
+          code
+       }
+       protected void doPost(HttpservletRequest req, HttpservletResponse hres)
+      {
+          code
+       }
+} 
+
+
+
+
+
